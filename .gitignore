@@ -1,0 +1,31 @@
+.env
+
+
+#-------backend--------
+src/backend/.env
+src/backend/obj/*
+src/backend/bin/*
+
+#-------frontend--------
+# dependencies
+src/frontend/node_modules
+src/frontend/.pnp
+src/frontend.pnp.js
+
+# testing
+src/frontend/coverage
+
+# production
+src/frontend/build
+
+# misc
+src/frontend/.env
+src/frontend/.DS_Store
+src/frontend/.env.local
+src/frontend/.env.development.local
+src/frontend/.env.test.local
+src/frontend/.env.production.local
+
+src/frontendnpm-debug.log*
+src/frontendyarn-debug.log*
+src/frontendyarn-error.log*
