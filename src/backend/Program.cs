@@ -20,6 +20,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapGet("/", () => "Hello Todo App!");
+
 app.MapControllers();
 
 app.Run();

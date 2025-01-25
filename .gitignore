@@ -1,24 +1,23 @@
 .env
+**/.env
+**/.vs/*
 
 
 #-------backend--------
 src/backend/.env
 src/backend/obj/*
 src/backend/bin/*
+src/backend/.vs
 
 #-------frontend--------
-# dependencies
 src/frontend/node_modules
 src/frontend/.pnp
 src/frontend.pnp.js
 
-# testing
 src/frontend/coverage
 
-# production
 src/frontend/build
 
-# misc
 src/frontend/.env
 src/frontend/.DS_Store
 src/frontend/.env.local
@@ -29,3 +28,14 @@ src/frontend/.env.production.local
 src/frontendnpm-debug.log*
 src/frontendyarn-debug.log*
 src/frontendyarn-error.log*
+src/frontend/.vs
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sw?
