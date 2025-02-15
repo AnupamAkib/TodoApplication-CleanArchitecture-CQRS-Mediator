@@ -1,6 +1,7 @@
 services:
   - type: web
     name: webapi
+    plan: free
     env: docker
     dockerfilePath: ./src/backend/Dockerfile
     envVars:
@@ -11,6 +12,7 @@ services:
 
   - type: web
     name: frontend
+    plan: free
     env: docker
     dockerfilePath: ./src/frontend/Dockerfile
     envVars:
