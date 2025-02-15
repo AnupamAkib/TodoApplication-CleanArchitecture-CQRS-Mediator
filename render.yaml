@@ -1,18 +1,4 @@
 services:
-  - type: postgres
-    name: postgres-database
-    plan: free  # Use "free" for the free tier or "starter" for paid plans
-    envVars:
-      - key: POSTGRES_DB
-        value: ${POSTGRES_DB}
-      - key: POSTGRES_USER
-        value: ${POSTGRES_USER}
-      - key: POSTGRES_PASSWORD
-        value: ${POSTGRES_PASSWORD}
-    volume:
-      name: postgres_data
-      mountPath: /var/lib/postgresql/data
-
   - type: web
     name: webapi
     env: dotnet
@@ -23,10 +9,8 @@ services:
       - key: ASPNETCORE_ENVIRONMENT
         value: Development
       - key: API__ConnectionStrings__DatabaseConnection
-        value: Host=postgres-database:5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD}
+        value: Host=dpg-cuo7cdaj1k6c7394q0r0-a;Port=5432;Database=postgres_database_h3p7;Username=postgres_database_h3p7_user;Password=FknIF1wdVh2QTEIrHQ9mJCAbdLpRUkAJ
     port: 8080  # Expose the primary port
-    depends_on:
-      - postgres-database
 
   - type: web
     name: frontend
