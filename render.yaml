@@ -1,26 +1,18 @@
 services:
   - type: web
     name: webapi
-    env: dotnet
-    build:
-      context: ./src/backend
-      dockerfile: Dockerfile
+    env: docker
+    dockerfilePath: ./src/backend/Dockerfile
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Development
       - key: API__ConnectionStrings__DatabaseConnection
         value: Host=dpg-cuo7cdaj1k6c7394q0r0-a;Port=5432;Database=postgres_database_h3p7;Username=postgres_database_h3p7_user;Password=FknIF1wdVh2QTEIrHQ9mJCAbdLpRUkAJ
-    port: 8080  # Expose the primary port
 
   - type: web
     name: frontend
-    env: node
-    build:
-      context: ./src/frontend
-      dockerfile: Dockerfile
+    env: docker
+    dockerfilePath: ./src/frontend/Dockerfile
     envVars:
       - key: ENV_KEY
         value: ${ENV_VALUE}
-    port: 3000
-    depends_on:
-      - webapi
