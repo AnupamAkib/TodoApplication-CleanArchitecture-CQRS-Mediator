@@ -7,6 +7,7 @@ public static class Startup
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddApplicationServices();
+        services.AddInfrastructureServices(configuration);
         services.AddWebServices();
 
         services.AddControllers()

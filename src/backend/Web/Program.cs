@@ -1,6 +1,9 @@
 using TodoApp.Web;
+using static Infrastructure.Data.InitialiserExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddEnvironmentVariables("API__");
 
 // Add services to the container.
 
@@ -12,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
+
+await app.InitialiseDatabaseAsync();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
