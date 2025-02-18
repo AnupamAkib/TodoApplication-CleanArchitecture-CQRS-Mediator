@@ -8,5 +8,5 @@ public record TodoItemDto(
     string Priority,
     bool IsUrgent,
     DateTimeOffset CreatedAt,
-    bool IsArchived
+    bool? IsArchived
 );
