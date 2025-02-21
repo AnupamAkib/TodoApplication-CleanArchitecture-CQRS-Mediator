@@ -1,4 +1,5 @@
 using TodoApp.Web;
+using TodoApp.Web.Common;
 using static Infrastructure.Data.InitialiserExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.ConfigureServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 await app.InitialiseDatabaseAsync();
 
