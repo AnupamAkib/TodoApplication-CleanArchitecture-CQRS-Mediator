@@ -1,4 +1,4 @@
-Simple Todo Application
+# Todo Application with .NET Core & clean architecture
 
 ## Getting Started
 
