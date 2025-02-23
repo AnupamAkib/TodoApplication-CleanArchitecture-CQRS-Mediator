@@ -4,30 +4,16 @@ using TodoApp.Application.Common.Models;
 
 namespace TodoApp.Application.TodoItems.Queries.GetAllTodoItems;
 
-public record GetAllTodoItemsQuery(Guid? Id) : IRequest<Result<TodoItemDto>>;
+public record GetAllTodoItemsQuery(Guid? Id) : IRequest<Result<List<TodoItemDto>>>;
 
-public class GetAllTodoItemsQueryHandler(IApplicationDbContext context) : IRequestHandler<GetAllTodoItemsQuery, Result<TodoItemDto>>
+public class GetAllTodoItemsQueryHandler(IApplicationDbContext context, IMapper mapper) : IRequestHandler<GetAllTodoItemsQuery, Result<List<TodoItemDto>>>
 {
-    public async Task<Result<TodoItemDto>> Handle(GetAllTodoItemsQuery request, CancellationToken cancellationToken)
+    public async Task<Result<List<TodoItemDto>>> Handle(GetAllTodoItemsQuery request, CancellationToken cancellationToken)
     {
-        var existingTodo = await context.TodoItems.FirstOrDefaultAsync(cancellationToken);
+        var existingTodo = await context.TodoItems.ToListAsync(cancellationToken);
 
-        if (existingTodo == null)
-        {
-            return Result<TodoItemDto>.Failure(["No todo item found"]);
-        }
+        var res = mapper.Map<List<TodoItemDto>>(existingTodo);
 
-        var _todo = new TodoItemDto(
-            Id: existingTodo.Id,
-            Title: existingTodo.Title,
-            Description: existingTodo.Description,
-            Status: existingTodo.Status.ToString(),
-            Priority: existingTodo.Priority.ToString(),
-            IsUrgent: existingTodo.IsUrgent,
-            IsArchived: existingTodo.IsArchived,
-            CreatedAt: existingTodo.Created
-        );
-
-        return Result<TodoItemDto>.Success(_todo);
+        return Result<List<TodoItemDto>>.Success(res);
     }
 }

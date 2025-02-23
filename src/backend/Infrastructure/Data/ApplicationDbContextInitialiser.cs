@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Domain.Common.Enums;
+using Domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -97,6 +98,19 @@ public class ApplicationDbContextInitialiser
             {
                 Title = "Welcome to TodoApp!",
                 Description = "This is a sample todo item which was seeded while initializing the database"
+            },
+            new Todo
+            {
+                Title = "Test Todo",
+                Description = "Sample Todo application description",
+                Priority = Priority.Low,
+                IsUrgent = true,
+            },
+            new Todo
+            {
+                Title = "Implement Pagination for responses",
+                Description = "I want to support pagination in my RESTful API. My API method should return a JSON list of product via /products/index. However, there are potentially",
+                Priority = Priority.High
             }
         ];
 
