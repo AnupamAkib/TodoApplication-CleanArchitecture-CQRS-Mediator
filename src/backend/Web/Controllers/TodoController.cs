@@ -8,10 +8,11 @@ namespace TodoApp.Web.Controllers;
 public class TodoController : BaseController
 {
     [HttpGet]
-    public async Task<ActionResult<Result<TodoItemDto>>> GetAllTodoItems(Guid? id)
+    public async Task<ActionResult<Result<PaginatedList<TodoItemDto>>>> GetAllTodoItems(
+        [FromQuery] GetAllTodoItemsQuery query)
     {
-        var result = await Mediator.Send(new GetAllTodoItemsQuery(id));
+        var result = await Mediator.Send(query);
 
-        return Ok(result);
+        return result.Succeeded ? Ok(result) : BadRequest(result);
     }
 }

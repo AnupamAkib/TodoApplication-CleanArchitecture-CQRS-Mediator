@@ -8,6 +8,5 @@ public class TodoMappingProfile : Profile
     public TodoMappingProfile()
     {
         CreateMap<Todo, TodoItemDto>();
-        //fix the correct date formating 
     }
 }
