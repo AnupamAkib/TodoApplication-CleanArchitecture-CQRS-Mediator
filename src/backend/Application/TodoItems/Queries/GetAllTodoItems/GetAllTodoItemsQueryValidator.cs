@@ -1,8 +1,8 @@
 ﻿namespace TodoApp.Application.TodoItems.Queries.GetAllTodoItems;
 
-public class GetAllTodoItemsValidator
+public class GetAllTodoItemsQueryValidator
 {
-    public GetAllTodoItemsValidator()
+    public GetAllTodoItemsQueryValidator()
     {
 
     }
