@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Infrastructure.Data;
+﻿using Infrastructure.Data;
 using Testcontainers.PostgreSql;
 
 namespace Application.UnitTests.Common;
@@ -52,10 +51,7 @@ public class ApplicationDbContextFactory
 
     private static void AddTodoItems(ApplicationDbContext context)
     {
-        context.AddRange(new Todo
-        {
-            Title = "Test1",
-        });
+        context.AddRange(TestTodo1, TestTodo2);
     }
 
     public static void Destroy(ApplicationDbContext context)

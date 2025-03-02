@@ -1,5 +1,4 @@
 ﻿using Application.UnitTests.Common;
-using FluentAssertions;
 using TodoApp.Application.TodoItems.Queries.GetAllTodoItems;
 
 namespace Application.UnitTests.TodoItems.Queries;
@@ -23,6 +22,8 @@ public class TestGetAllTodoItemsQueryHandler : CommandTestBase
         var result = await _handler.Handle(query, CancellationToken.None);
 
         result.Value.Should().NotBeNull();
-        result.Value?.Items.Should().HaveCount(0);
+        result.Value?.Items.Should().HaveCount(2);
+        result.Value?.Items.First().Title.Should().BeEquivalentTo(TestTitle1);
+        result.Value?.Items.Skip(1).First().Title.Should().BeEquivalentTo(TestTitle2);
     }
 }
