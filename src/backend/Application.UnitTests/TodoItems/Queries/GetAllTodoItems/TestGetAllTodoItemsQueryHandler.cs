@@ -1,7 +1,7 @@
 ﻿using Application.UnitTests.Common;
 using TodoApp.Application.TodoItems.Queries.GetAllTodoItems;
 
-namespace Application.UnitTests.TodoItems.Queries;
+namespace Application.UnitTests.TodoItems.Queries.GetAllTodoItems;
 
 [TestFixture]
 public class TestGetAllTodoItemsQueryHandler : CommandTestBase

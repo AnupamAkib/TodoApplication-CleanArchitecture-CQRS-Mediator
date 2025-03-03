@@ -1,6 +1,6 @@
 ﻿using TodoApp.Application.TodoItems.Queries.GetAllTodoItems;
 
-namespace Application.UnitTests.TodoItems.Queries;
+namespace Application.UnitTests.TodoItems.Queries.GetAllTodoItems;
 
 public class TestGetAllTodoItemsQueryValidator
 {
