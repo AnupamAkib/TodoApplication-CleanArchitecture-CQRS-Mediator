@@ -2,6 +2,7 @@
 
 namespace Application.UnitTests.TodoItems.Queries.GetAllTodoItems;
 
+[TestFixture]
 public class TestGetAllTodoItemsQueryValidator
 {
     private readonly GetAllTodoItemsQueryValidator _validator;

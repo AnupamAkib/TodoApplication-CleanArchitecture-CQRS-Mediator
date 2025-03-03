@@ -23,7 +23,7 @@ public class TestGetAllTodoItemsQueryHandler : CommandTestBase
 
         result.Value.Should().NotBeNull();
         result.Value?.Items.Should().HaveCount(2);
-        result.Value?.Items.First().Title.Should().BeEquivalentTo(TestTitle1);
-        result.Value?.Items.Skip(1).First().Title.Should().BeEquivalentTo(TestTitle2);
+        result.Value?.Items.First().Title.Should().BeEquivalentTo(TestTodoTitle1);
+        result.Value?.Items.Skip(1).First().Title.Should().BeEquivalentTo(TestTodoTitle2);
     }
 }
