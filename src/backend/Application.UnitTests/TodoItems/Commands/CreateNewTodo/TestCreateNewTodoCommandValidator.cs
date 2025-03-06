@@ -1,7 +1,10 @@
-﻿namespace Application.UnitTests.TodoItems.Commands.CreateNewTodo;
+﻿using Application.UnitTests.Common;
+using TodoApp.Application.TodoItems.Commands;
+
+namespace Application.UnitTests.TodoItems.Commands.CreateNewTodo;
 
 [TestFixture]
-public class TestCreateNewTodoCommandValidator : AbstractValidator<<CreateNewTodoCommand>>
+public class TestCreateNewTodoCommandValidator : CommandTestBase
 {
     private readonly CreateNewTodoCommandValidator _validator;
 
@@ -13,7 +16,7 @@ public class TestCreateNewTodoCommandValidator : AbstractValidator<<CreateNewTod
     [Test]
     public void Validate_WhenTitleIsEmpty_ReturnFailure()
     {
-        var command = new CreateNewTodoCommand(Title: string.Empty);
+        var command = new CreateNewTodoCommand(Title: string.Empty, Description: null);
 
         // Act
         var result = _validator.TestValidate(command);
@@ -25,7 +28,7 @@ public class TestCreateNewTodoCommandValidator : AbstractValidator<<CreateNewTod
     [Test]
     public void Validate_WhenTitleIsTooLong_ReturnFailure()
     {
-        var command = new CreateNewTodoCommand(Title: new string('a', 201));
+        var command = new CreateNewTodoCommand(Title: new string('a', 201), Description: null);
 
         // Act
         var result = _validator.TestValidate(command);
