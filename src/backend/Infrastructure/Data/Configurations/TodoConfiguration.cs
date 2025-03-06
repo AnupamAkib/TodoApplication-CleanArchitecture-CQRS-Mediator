@@ -13,9 +13,9 @@ public class TodoConfiguration : IEntityTypeConfiguration<Todo>
 
         builder.Property(t => t.Title)
             .IsRequired()
-            .HasMaxLength(500);
+            .HasMaxLength(200);
 
         builder.Property(t => t.Description)
-            .HasMaxLength(1000);
+            .HasMaxLength(5000);
     }
 }

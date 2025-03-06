@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TodoApp.Application.Common.DTOs;
 using TodoApp.Application.Common.Models;
+using TodoApp.Application.TodoItems.Commands;
 using TodoApp.Application.TodoItems.Queries.GetAllTodoItems;
 
 namespace TodoApp.Web.Controllers;
@@ -12,6 +13,14 @@ public class TodoController : BaseController
         [FromQuery] GetAllTodoItemsQuery query)
     {
         var result = await Mediator.Send(query);
+
+        return result.Succeeded ? Ok(result) : BadRequest(result);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Result<TodoItemDto>>> CreateNewTodo(CreateNewTodoCommand command)
+    {
+        var result = await Mediator.Send(command);
 
         return result.Succeeded ? Ok(result) : BadRequest(result);
     }
