@@ -20,7 +20,7 @@ public class GetAllTodoItemsQueryHandler(IApplicationDbContext context, IMapper 
 {
     public async Task<Result<GetAllTodoItemsDto>> Handle(GetAllTodoItemsQuery request, CancellationToken cancellationToken)
     {
-        var existingTodo = context.TodoItems.AsQueryable();
+        var existingTodo = context.TodoItems.Where(t => t.IsArchived != true).AsQueryable();
 
         if (request.SearchText != null)
         {
