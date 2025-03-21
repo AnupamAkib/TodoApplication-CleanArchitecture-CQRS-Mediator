@@ -9,8 +9,10 @@ namespace TodoApp.Application.TodoItems.Queries.GetAllTodoItems;
 
 public record GetAllTodoItemsQuery(
     int PageNumber = 1,
-    int PageSize = 10,
-    string SearchText = "")
+    int PageSize = 10000,
+    string SearchText = "",
+    Priority? Priority = null,
+    bool? IsUrgent = null)
     : IRequest<Result<GetAllTodoItemsDto>>;
 
 public class GetAllTodoItemsQueryHandler(IApplicationDbContext context, IMapper mapper)
@@ -27,6 +29,16 @@ public class GetAllTodoItemsQueryHandler(IApplicationDbContext context, IMapper 
                         (t.Description ?? "").ToLower().Contains(request.SearchText.ToLower()));
         }
 
+        if (request.IsUrgent != null)
+        {
+            existingTodo = existingTodo.Where(t => t.IsUrgent == request.IsUrgent);
+        }
+
+        if (request.Priority != null)
+        {
+            existingTodo = existingTodo.Where(t => t.Priority == request.Priority);
+        }
+
         var todoItemsWithStatus = new GetAllTodoItemsDto
         {
             Opened = await GetTodoByStatus(existingTodo, TodoStatus.Opened, mapper, request),
@@ -39,8 +51,6 @@ public class GetAllTodoItemsQueryHandler(IApplicationDbContext context, IMapper 
             return Result<GetAllTodoItemsDto>.Failure(["Not found"]);
         }
 
-        //Todo: Implement search by TodoItem Id, filter (search by priority, urgency, date etc)
-
         return Result<GetAllTodoItemsDto>.Success(todoItemsWithStatus);
     }
 
@@ -52,6 +62,8 @@ public class GetAllTodoItemsQueryHandler(IApplicationDbContext context, IMapper 
     {
         return await todos
             .Where(t => t.Status == status)
+            .OrderByDescending(t => t.IsUrgent)
+            .ThenBy(t => t.Created)
             .ProjectTo<TodoItemDto>(mapper.ConfigurationProvider)
             .PaginatedListAsync(request.PageNumber, request.PageSize);
     }
