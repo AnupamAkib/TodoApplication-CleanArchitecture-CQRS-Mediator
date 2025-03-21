@@ -3,9 +3,9 @@ using TodoApp.Application.Common.DTOs;
 
 namespace TodoApp.Application.Common.Mappings;
 
-public class TodoMappingProfile : Profile
+public class MappingProfile : Profile
 {
-    public TodoMappingProfile()
+    public MappingProfile()
     {
         CreateMap<Todo, TodoItemDto>();
     }

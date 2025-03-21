@@ -13,7 +13,7 @@ public class CommandTestBase : IDisposable
 
     public CommandTestBase()
     {
-        var config = new MapperConfiguration(config => config.AddProfile<TodoMappingProfile>());
+        var config = new MapperConfiguration(config => config.AddProfile<MappingProfile>());
 
         config.AssertConfigurationIsValid();
 
