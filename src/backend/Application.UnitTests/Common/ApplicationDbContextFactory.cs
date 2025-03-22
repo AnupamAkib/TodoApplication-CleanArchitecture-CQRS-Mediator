@@ -51,7 +51,7 @@ public class ApplicationDbContextFactory
 
     private static void AddTodoItems(ApplicationDbContext context)
     {
-        context.AddRange(TestTodo1, TestTodo2);
+        context.AddRange(TestTodo1, TestTodo2, TestTodo3);
     }
 
     public static void Destroy(ApplicationDbContext context)

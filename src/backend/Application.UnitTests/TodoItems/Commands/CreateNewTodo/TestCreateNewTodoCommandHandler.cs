@@ -29,13 +29,13 @@ public class TestCreateNewTodoCommandHandler : CommandTestBase
     [Test]
     public async Task Handle_FoundUniqueTitle_ReturnSuccess()
     {
-        var command = new CreateNewTodoCommand(Title: TestTodoTitle3, Description: null);
+        var command = new CreateNewTodoCommand(Title: TestTodoTitle4, Description: null);
 
         // Act
         var result = await _handler.Handle(command, CancellationToken.None);
 
         result.Succeeded.Should().BeTrue();
         result.Value?.Should().NotBeNull();
-        result.Value?.Title.Should().BeEquivalentTo(TestTodoTitle3);
+        result.Value?.Title.Should().BeEquivalentTo(TestTodoTitle4);
     }
 }
