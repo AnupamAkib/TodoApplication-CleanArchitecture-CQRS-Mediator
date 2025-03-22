@@ -15,6 +15,9 @@ public partial class ConstantData
     public static readonly Guid TestTodoItemGuid3 = Guid.NewGuid();
     public static readonly string TestTodoTitle3 = "TestTodoTitle3";
 
+    public static readonly Guid TestTodoItemGuid4 = Guid.NewGuid();
+    public static readonly string TestTodoTitle4 = "TestTodoTitle4";
+
     public static Todo TestTodo1 = new()
     {
         Id = TestTodoItemGuid1,
@@ -26,5 +29,12 @@ public partial class ConstantData
         Id = TestTodoItemGuid2,
         Title = TestTodoTitle2,
         Priority = TestPriority2
+    };
+
+    public static Todo TestTodo3 = new()
+    {
+        Id = TestTodoItemGuid3,
+        Title = TestTodoTitle3,
+        IsArchived = true
     };
 }
